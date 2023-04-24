@@ -6,3 +6,10 @@
 #include <unordered_set>
 #include <stdlib.h>
 #include "CGL/CGL.h"
+
+using namespace std;
+using namespace CGL;
+
+int main(int argc, char **argv) {
+    cout << "Hello world" << endl;
+}

@@ -1,0 +1,80 @@
+{
+  "buildCommand" : {
+    "command" : "prepareForIndexing",
+    "enableIndexBuildArena" : false,
+    "targets" : null
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "fdcaa5b417a295e5fcbb827c8e09633e8d0b689448125f054827976ba074e096"
+    },
+    {
+      "guid" : "fdcaa5b417a295e5fcbb827c8e09633e24c3e42a54645853dab0d8fcd323c81e"
+    },
+    {
+      "guid" : "fdcaa5b417a295e5fcbb827c8e09633ec22e2e2dfd7f053eb0d552c513346ab9"
+    },
+    {
+      "guid" : "fdcaa5b417a295e5fcbb827c8e09633ed56e8cf1956e10f21f2da90431480fde"
+    },
+    {
+      "guid" : "fdcaa5b417a295e5fcbb827c8e09633e708584d743f6394d65f2ae8434639fa6"
+    },
+    {
+      "guid" : "fdcaa5b417a295e5fcbb827c8e09633e53316c258bb47feed7cbae27dabc3571"
+    },
+    {
+      "guid" : "fdcaa5b417a295e5fcbb827c8e09633e777747aa5c2f7758b546ac38a5653fd7"
+    },
+    {
+      "guid" : "fdcaa5b417a295e5fcbb827c8e09633e3233ee8609dfbba28f9003fe0c23d00f"
+    },
+    {
+      "guid" : "fdcaa5b417a295e5fcbb827c8e09633ebcb1c8f1f62911ab89cb16599273c2b6"
+    }
+  ],
+  "containerPath" : "/Users/miclin/Developer/cs184/proj-final/TypeKit.xcodeproj",
+  "continueBuildingAfterErrors" : true,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "arm64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "macosx",
+      "sdk" : "macosx13.3",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "arm64e",
+        "arm64",
+        "x86_64"
+      ],
+      "targetArchitecture" : "arm64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "",
+      "buildProductsPath" : "",
+      "derivedDataPath" : "/Users/miclin/Library/Developer/Xcode/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/miclin/Library/Developer/Xcode/DerivedData/TypeKit-eqawwxtkckhwgfhhomebsjrfglxy/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/miclin/Library/Developer/Xcode/DerivedData/TypeKit-eqawwxtkckhwgfhhomebsjrfglxy/Index.noindex/PrecompiledHeaders",
+      "pchPath" : ""
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO"
+        }
+      }
+    }
+  },
+  "qos" : "default",
+  "schemeCommand" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : true,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}
