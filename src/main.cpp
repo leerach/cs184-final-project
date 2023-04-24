@@ -109,9 +109,26 @@ void setGLFWCallbacks() {
 void configureInterface() {
     nanogui::TextBox *tb = new nanogui::TextBox(screen);
     tb->setEditable(true);
-    tb->setFixedSize({150, 25});
-    tb->setValue("Input TextBox");
-    tb->setPosition({50, 50});
+    tb->setPlaceholder("Text to render");
+    tb->setValue("");
+    tb->setVisible(true);
+    tb->setAlignment(nanogui::TextBox::Alignment::Left);
+
+    auto layoutWidgets = [&](int screenWidth, int screenHeight) {
+        int width = static_cast<int>(screenWidth * .85);
+        int height = 30;
+        tb->setFixedSize({width, height});
+
+        int x = (screenWidth - width) / 2;
+        tb->setPosition({x, 50});
+    };
+
+    layoutWidgets(screen->width(), screen->height());
+//
+//    screen->setResizeCallback([layoutWidgets](nanogui::Vector2i screenSize) {
+//        layoutWidgets(screenSize[0], screenSize[1]);
+//        screen->performLayout();
+//    });
 }
 
 int main(int argc, char **argv) {
