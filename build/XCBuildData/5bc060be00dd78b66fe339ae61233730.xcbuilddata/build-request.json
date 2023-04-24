@@ -6,7 +6,7 @@
   },
   "configuredTargets" : [
     {
-      "guid" : "fdcaa5b417a295e5fcbb827c8e09633ec22e2e2dfd7f053eb0d552c513346ab9"
+      "guid" : "fdcaa5b417a295e5fcbb827c8e09633ebcb1c8f1f62911ab89cb16599273c2b6"
     }
   ],
   "containerPath" : "/Users/miclin/Developer/cs184/proj-final/TypeKit.xcodeproj",
@@ -15,19 +15,6 @@
   "hideShellScriptEnvironment" : false,
   "parameters" : {
     "action" : "build",
-    "activeArchitecture" : "arm64",
-    "activeRunDestination" : {
-      "disableOnlyActiveArch" : false,
-      "platform" : "macosx",
-      "sdk" : "macosx13.3",
-      "sdkVariant" : "macos",
-      "supportedArchitectures" : [
-        "arm64e",
-        "arm64",
-        "x86_64"
-      ],
-      "targetArchitecture" : "arm64"
-    },
     "arenaInfo" : {
       "buildIntermediatesPath" : "",
       "buildProductsPath" : "",
@@ -46,9 +33,10 @@
       }
     }
   },
+  "qos" : "default",
   "schemeCommand" : "launch",
   "showNonLoggedProgress" : true,
-  "useDryRun" : false,
+  "useDryRun" : true,
   "useImplicitDependencies" : true,
   "useLegacyBuildLocations" : false,
   "useParallelTargets" : true
