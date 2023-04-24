@@ -129,7 +129,8 @@ int main(int argc, char **argv) {
         glClear(GL_COLOR_BUFFER_BIT);
 
         // Draw nanogui
-        screen->drawAll();
+        screen->drawContents();
+        screen->drawWidgets();
 
         glfwSwapBuffers(window);
     }
