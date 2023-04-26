@@ -2,11 +2,11 @@
 ## CS184 - Patrick Cui, Kelly Hu, Michael Lin, Rachel Lee
 
 ### Accomplished
-- Created a FontReader class that uses the FreeType library to process a TTF file and return a vector of ConicBezierCurve which contains a 2D Vector of startPoint, endPoint, and controlPoint
-    - initialize(): Initializes the FreeType library and returns an error code if it fails.
-    - loadTTF(const char* path): Loads a TrueType font file located at the given path and returns an error code if it fails.
-    - readCurves(const char c): Reads the glyph for the given character c and returns a vector of ConicBezierCurve objects representing the vector paths of the glyph.
-    The readCurves function decomposes the glyph's outline into a series of straight lines and quadratic Bezier curves using FreeType's FT_Outline_Decompose function. The decomposed curves are stored in a vector of ConicBezierCurve objects.
+- Created a FontReader class that uses the FreeType library to process a TTF file and return a vector of `ConicBezierCurve` which contains a 2D Vector of startPoint, endPoint, and controlPoint
+    - `initialize()`: Initializes the FreeType library and returns an error code if it fails.
+    - `loadTTF(const char* path)`: Loads a TrueType font file located at the given path and returns an error code if it fails.
+    - `readCurves(const char c)`: Reads the glyph for the given character c and returns a vector of `ConicBezierCurve` objects representing the vector paths of the glyph.
+    The `readCurves` function decomposes the glyph's outline into a series of straight lines and quadratic Bezier curves using FreeType's `FT_Outline_Decompose` function. The decomposed curves are stored in a vector of `ConicBezierCurve` objects.
 - Implemented a UI using AppKit that renders a window with an OpenGL view and takes in user text as input and displays a render button to eventually render a letter in the window.
 
 

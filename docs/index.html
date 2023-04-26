@@ -268,12 +268,12 @@ pre[data-line] .line-highlight[data-end]:after {
 <h3 class="mume-header" id="accomplished">Accomplished</h3>
 
 <ul>
-<li>Created a FontReader class that uses the FreeType library to process a TTF file and return a vector of ConicBezierCurve which contains a 2D Vector of startPoint, endPoint, and controlPoint
+<li>Created a FontReader class that uses the FreeType library to process a TTF file and return a vector of <code>ConicBezierCurve</code> which contains a 2D Vector of startPoint, endPoint, and controlPoint
 <ul>
-<li>initialize(): Initializes the FreeType library and returns an error code if it fails.</li>
-<li>loadTTF(const char* path): Loads a TrueType font file located at the given path and returns an error code if it fails.</li>
-<li>readCurves(const char c): Reads the glyph for the given character c and returns a vector of ConicBezierCurve objects representing the vector paths of the glyph.<br>
-The readCurves function decomposes the glyph&apos;s outline into a series of straight lines and quadratic Bezier curves using FreeType&apos;s FT_Outline_Decompose function. The decomposed curves are stored in a vector of ConicBezierCurve objects.</li>
+<li><code>initialize()</code>: Initializes the FreeType library and returns an error code if it fails.</li>
+<li><code>loadTTF(const char* path)</code>: Loads a TrueType font file located at the given path and returns an error code if it fails.</li>
+<li><code>readCurves(const char c)</code>: Reads the glyph for the given character c and returns a vector of <code>ConicBezierCurve</code> objects representing the vector paths of the glyph.<br>
+The <code>readCurves</code> function decomposes the glyph&apos;s outline into a series of straight lines and quadratic Bezier curves using FreeType&apos;s <code>FT_Outline_Decompose</code> function. The decomposed curves are stored in a vector of <code>ConicBezierCurve</code> objects.</li>
 </ul>
 </li>
 <li>Implemented a UI using AppKit that renders a window with an OpenGL view and takes in user text as input and displays a render button to eventually render a letter in the window.</li>
