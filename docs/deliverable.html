@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head>
-      <title>milestone</title>
+      <title>deliverable</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
@@ -261,51 +261,64 @@ pre[data-line] .line-highlight[data-end]:after {
     </head>
     <body for="html-export">
       <div class="mume markdown-preview  ">
-      <h1 class="mume-header" id="c-font-rendering-milestone-status-report">C++ Font Rendering Milestone Status Report</h1>
+      <h1 class="mume-header" id="c-font-rendering-engine">C++ Font Rendering Engine</h1>
 
-<h2 class="mume-header" id="cs184---patrick-cui-kelly-hu-michael-lin-rachel-lee">CS184 - Patrick Cui, Kelly Hu, Michael Lin, Rachel Lee</h2>
+<h2 class="mume-header" id="cs184---patrick-cui-kelly-hu-michael-lin">CS184 - Patrick Cui, Kelly Hu, Michael Lin</h2>
 
-<h3 class="mume-header" id="accomplished">Accomplished</h3>
+<p>For the font rendering project, we will use an online library TrueType .tff or OpenType files and write a Bezier curve rasterizer to display them. We plan on implementing a way to take an input of a string or paragraph and display it rendered inside a viewport, with support for features like font sizes, colors, and font type.</p>
+<h3 class="mume-header" id="project-description">Project Description</h3>
 
-<ul>
-<li>Created a FontReader class that uses the FreeType library to process a TTF file and return a vector of ConicBezierCurve which contains a 2D Vector of startPoint, endPoint, and controlPoint
-<ul>
-<li>initialize(): Initializes the FreeType library and returns an error code if it fails.</li>
-<li>loadTTF(const char* path): Loads a TrueType font file located at the given path and returns an error code if it fails.</li>
-<li>readCurves(const char c): Reads the glyph for the given character c and returns a vector of ConicBezierCurve objects representing the vector paths of the glyph.<br>
-The readCurves function decomposes the glyph&apos;s outline into a series of straight lines and quadratic Bezier curves using FreeType&apos;s FT_Outline_Decompose function. The decomposed curves are stored in a vector of ConicBezierCurve objects.</li>
-</ul>
-</li>
-<li>Implemented a UI using AppKit that renders a window with an OpenGL view and takes in user text as input and displays a render button to eventually render a letter in the window.</li>
-</ul>
-<h3 class="mume-header" id="preliminary-results">Preliminary Results</h3>
+<p>We hope to implement a C++ font rendering engine where the program takes in user input as a list of characters and renders them to the viewport according to the specifications in the TTF files of the selected fonts. First, we will convert the TTF files for the selected font into a list of anchor points and constraints. Then, we will use these anchors and constraints to draw curves and vectors on the viewport using algorithms from both class materials and from outside research.<br>
+<img src="cs184-description.png" alt="Sample sentences"></p>
+<h3 class="mume-header" id="goals--deliverables">Goals &amp; Deliverables</h3>
+
+<h4 class="mume-header" id="1-deliverable-plan">(1) Deliverable Plan:</h4>
 
 <ul>
 <li>
-<p>Current UI:<br>
-<img src="images/ui.png" alt="Current UI"></p>
+<p>Input a letter or string or small paragraph into Terminal and have it show up rendered in a viewport. The user can select a dropdown font and we would render the font on the GUI.</p>
 </li>
 <li>
-<p>Anchor Points &amp; Bezier Curves:<br>
-<img src="images/FontReader.png" alt="Anchor Points"></p>
+<p>We can measure performance by using a timer while running the program and rendering fonts to record how long the algorithm takes to run.</p>
+</li>
+<li>
+<p>For measuring font alignment, we will calculate the bounding box of the font and find the smallest rectangle that completely encloses the font. This can be done by calculating the minimum and maximum x and y coordinates of the B&#xE9;zier curve points that make up the font.</p>
+</li>
+<li>
+<p>We also plan on implementing a baseline of the font where font letters sit on the imaginary line upon which the letters of a font sit to help ensure font alignment. The B&#xE9;zier curves that make up the font can be analyzed by either using the vertical position of the control points or the vertical points of the bounding boxes to determine the position of the baseline.</p>
+</li>
+<li>
+<p>We also plan on supporting different font sizes and colors.</p>
 </li>
 </ul>
-<h3 class="mume-header" id="progress-reflection">Progress Reflection</h3>
+<h4 class="mume-header" id="2-aspirational-stretch-goals">(2) Aspirational (Stretch) Goals:</h4>
 
 <ul>
-<li>Our initial goal was to integrate the nanogui from Project 4 ClothSim into our repo to render the Bezier curves in the GUI.</li>
-<li>However, the repo began to get more messy and complicated to work with across the team due to local build errors, so we decided to create a new repo and use AppKit instead for the Model-View-Controller.</li>
-<li>Since some of the team members were already familiar with how to use AppKit, we decided to move forward with this library to implement the rendered window.</li>
+<li>A potential stretch goal we can implement is that we can account for differing thicknesses of font weights by scaling the font by a percentage. When a font is rendered at a different size, this vector is transformed according to a scaling factor to create a new set of curves that represent the scaled glyph.</li>
+<li>We can also hope to implement supersampling for the rasterizer to reduce aliasing artifacts such as jagged edges and moir&#xE9; patterns that can occur when rendering at low resolutions. Since this also might lead to slower runtimes, we can keep record of the runtimes of the program to track the different render times.</li>
 </ul>
-<h3 class="mume-header" id="revised-todo">Revised TODO</h3>
+<h4 class="mume-header" id="3-potential-problems--challenges">(3) Potential problems / challenges</h4>
 
 <ul>
-<li>Convert raw anchor points to ones we can render using a known algorithm (such as de casteljau&apos;s algorithm)</li>
+<li>A possible problem we can encounter is the issue of rendering a &#x201C;pixel perfect&#x201D; font where there could be precision errors in the rendering algorithm that rounds a pixel position up or down and would create different sizes of the same font distinguishable to the naked eye.</li>
 </ul>
-<p><strong>Video Link:</strong><br>
-<a href="https://drive.google.com/file/d/1q8iR0E-3vQEv11JkJXeweCCx8BOcaj8-/view?usp=share_link">https://drive.google.com/file/d/1q8iR0E-3vQEv11JkJXeweCCx8BOcaj8-/view?usp=share_link</a></p>
-<p><strong>Slides Link:</strong><br>
-<a href="https://docs.google.com/presentation/d/1wWpdOr6KtxQWiHJTQNXE9imhYonqXX_ZKGg0gPIZ440/edit?usp=sharing">https://docs.google.com/presentation/d/1wWpdOr6KtxQWiHJTQNXE9imhYonqXX_ZKGg0gPIZ440/edit?usp=sharing</a></p>
+<h3 class="mume-header" id="schedule">Schedule</h3>
+
+<p><strong>Week 1:</strong> Convert TTF files to a mapping between char and anchor points / raw positions  (Maybe figure out the anchor / constraint lines)<br>
+<strong>Week 2:</strong> Figure out the bounding box and baseline for each characters<br>
+<strong>Week 3:</strong> Convert raw anchor points to ones we can render using a known algorithm (such as de casteljau&apos;s algorithm)<br>
+<strong>Week 4:</strong> Optimize runtime / performance</p>
+<h2 class="mume-header" id="resources">Resources</h2>
+
+<ul>
+<li><a href="https://freetype.org">https://freetype.org</a></li>
+<li><a href="https://www.cairographics.org/">https://www.cairographics.org/</a></li>
+<li><a href="https://developer.apple.com/fonts/TrueType-Reference-Manual/">https://developer.apple.com/fonts/TrueType-Reference-Manual/</a>
+<ul>
+<li>A technical guide to the TrueType font format, which includes information on the rasterization process</li>
+</ul>
+</li>
+</ul>
 
       </div>
       

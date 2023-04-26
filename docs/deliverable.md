@@ -1,5 +1,5 @@
 # C++ Font Rendering Engine
-## CS184 - Patrick Cui, Kelly Hu, Michael Lin
+## CS184 - Patrick Cui, Kelly Hu, Michael Lin, Rachel Lee
 For the font rendering project, we will use an online library TrueType .tff or OpenType files and write a Bezier curve rasterizer to display them. We plan on implementing a way to take an input of a string or paragraph and display it rendered inside a viewport, with support for features like font sizes, colors, and font type. 
 ### Project Description
 We hope to implement a C++ font rendering engine where the program takes in user input as a list of characters and renders them to the viewport according to the specifications in the TTF files of the selected fonts. First, we will convert the TTF files for the selected font into a list of anchor points and constraints. Then, we will use these anchors and constraints to draw curves and vectors on the viewport using algorithms from both class materials and from outside research.  
