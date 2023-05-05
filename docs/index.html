@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head>
-      <title>milestone</title>
+      <title>final-report</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
@@ -261,51 +261,84 @@ pre[data-line] .line-highlight[data-end]:after {
     </head>
     <body for="html-export">
       <div class="mume markdown-preview  ">
-      <h1 class="mume-header" id="c-font-rendering-milestone-status-report">C++ Font Rendering Milestone Status Report</h1>
+      <h1 class="mume-header" id="c-font-rendering-final-report-group-45">C++ Font Rendering Final Report (Group 45)</h1>
 
 <h2 class="mume-header" id="cs184---patrick-cui-kelly-hu-michael-lin-rachel-lee">CS184 - Patrick Cui, Kelly Hu, Michael Lin, Rachel Lee</h2>
 
-<h3 class="mume-header" id="accomplished">Accomplished</h3>
+<h3 class="mume-header" id="abstract">Abstract</h3>
+
+<p>Our group implemented a C++ GPU font rendering engine for the final project. Font rendering is a crucial component for displaying text information to users on screens. Online systems, search engines, chatbots, and virtually every digital platform that requires user input utilizes a font rendering engine. Our engine works by converting TrueType Fonts (TTF) into a list of Bezier curves that are rasterized and filled using a scanline fill algorithm. The rasterized outline is then composed into an atlas, and a textured GLQuad is rendered using custom uv coordinates. This pipeline is written in C++ and provides an efficient way to render fonts on screens. Our renderer&#x2019;s UI was created using Appkit framework components, and we glued it together with the rasterizer using Objective-C++ interops. All in all, our font rendering engine is successful in rendering single characters, and we look forward to scaling it into the future.</p>
+<h3 class="mume-header" id="technical-approach">Technical Approach</h3>
+
+<h4 class="mume-header" id="technical-implementation">Technical Implementation</h4>
+
+<p>As part of our font rendering system implementation, we created a FontReader class to facilitate the processing of TrueType font files. To accomplish this, we utilized the FreeType library to extract vector paths for each glyph.</p>
+<p>The FontReader class was responsible for several key functions, including initializing the FreeType library and loading TTF files. In particular, we implemented a <code>loadTTF()</code> function that loaded the font file located at a given path and returned an error code if the loading process failed. Another critical function of the FontReader class was readCurves(), which decomposed the glyph&apos;s outline into a series of straight lines and quadratic Bezier curves using FreeType&apos;s <code>FT_Outline_Decompose</code> function. The decomposed curves were then stored in a vector of ConicBezierCurve objects, which contained a 2D vector of startPoint, endPoint, and controlPoint.</p>
+<p>For the frontend, we implemented a UI using objective C and AppKit (Mac only) that rendered a window with an OpenGL view, taking in user text as input and displaying a render button to eventually render a letter in the window. This UI enabled users to interact with the font rendering system easily and intuitively.</p>
+<h4 class="mume-header" id="techniques-used">Techniques Used</h4>
+
+<p>To rasterize each character, we piece the characters together in chunks onto a texture atlas and use the custom (u,v) coordinates of each character to complete a single GPU transfer. In the <code>BezierCurves.h</code> file, the <code>polynomialForm</code> method computes the intersections of the Bezier curves and the horizontal line. Then, in <code>BezierCurves.h::solve</code> we return a solution vector of the intersection pairs and fill the pixels between the intersection pairs.</p>
+<h4 class="mume-header" id="algorithms-implemented">Algorithms Implemented</h4>
+
+<p>In the <code>rasterize</code> method, we implemented a Scan-line Polygon Fill algorithm where we iterate through every row in each font and compute the Bezier curve for each horizontal line. Then, we fill the polygon between the intersection pairs. We also perform a <code>memcopy</code> of the individual bitmap data onto the texture atlas which we then transfer to the OpenGL view in <code>GLControlView</code> to render the pixels in the viewport.</p>
+<h4 class="mume-header" id="how-our-approach-varies-from-other-approaches">How our approach varies from other approaches</h4>
+
+<p>Since OpenGL does not support rasterization of the font formats, we first manually implemented the rasterization on the CPU then provided the texturized pixel to OpenGL. Using the TrueType font library, we also had to work with quadratic Bezier curves which differed from OTF files which used cubic Bezier curves with two output control points. Another possible algorithm we could have chosen instead of the Scanline Polygon Filling algorithm was the Boundary fill algorithm, but this method requires much more manual processing to render the text so we decided to move forward with the Scanline Polygon Filling algorithm instead.</p>
+<h4 class="mume-header" id="problems-encountered">Problems encountered</h4>
+
+<p>One key challenge was our attempt to integrate the nanogui from Project 4 ClothSim into our repository to render Bezier curves in the GUI. Initially, this seemed like a viable approach to achieve our goal, but as the project progressed, the repository began to get more complicated to work with due to local build errors. This complexity led to a messy codebase and hindered collaboration and progress, as everything was un-unified. To address these issues, we decided to create a new repository and adopt the Model-View-Controller (MVC) architecture pattern, using AppKit instead of nanogui. By adopting this pattern, we were able to separate the application&apos;s data, presentation, and user interface logic, making it easier to maintain and test each component independently. Moreover, AppKit&apos;s built-in functionality for handling graphics and event-driven input made it more suitable for our specific project&#x2019;s needs. This decision ultimately resulted in a cleaner and more manageable codebase that facilitated collaboration and progress, enabling the team to focus on implementing the font rendering pipeline efficiently.</p>
+<h4 class="mume-header" id="lessons-learned">Lessons learned</h4>
+
+<p>Our implementation of the font rendering system led to several lessons learned. First, our team gained knowledge on vector outline formats, specifically on using Bezier curves to define the boundary of letters. We also learned how to use open source font processing libraries, such as FreeType. Working in a group of 4 also taught us how to streamline processes to make</p>
+<p>Finally, working in person together at Berkeley Way West made the process more engaging and enjoyable. Our team is grateful for each member&apos;s contributions, dedication, and perseverance, which helped them push through to complete the final project.</p>
+<h3 class="mume-header" id="results">Results</h3>
+
+<p>Demo video link (click for full animation of the font renderer in action!): <a href="https://drive.google.com/file/d/1Oct3WXd1cYDMgiKr-9gkVumQm9dio8_i/view?resourcekey">https://drive.google.com/file/d/1Oct3WXd1cYDMgiKr-9gkVumQm9dio8_i/view?resourcekey</a></p>
+<ul>
+<li>
+<p>Rendering of the letter &#x201C;C&#x201D; in the font Inter, blue color, 230px font size:<br>
+<img src="images/c_render.png" alt="C Render"></p>
+</li>
+<li>
+<p>Rendering of the letters &#x201C;N&#x201D;, &#x201C;F&#x201D;, and &#x201C;T&#x201D; in the font SF Pro, Comic Sans, Times New Roman, colored white, red, green, in size 180px:<br>
+<img src="images/n_render.png" alt="N Render"><br>
+<img src="images/f_render.png" alt="F Render"><br>
+<img src="images/t_render.png" alt="T Render"></p>
+</li>
+<li>
+<p>Rendered textured GLQuad using custom uv coordinates<br>
+<img src="images/atlas.png" alt="atlas"></p>
+</li>
+</ul>
+<h3 class="mume-header" id="references">References</h3>
 
 <ul>
-<li>Created a FontReader class that uses the FreeType library to process a TTF file and return a vector of <code>ConicBezierCurve</code> which contains a 2D Vector of startPoint, endPoint, and controlPoint
-<ul>
-<li><code>initialize()</code>: Initializes the FreeType library and returns an error code if it fails.</li>
-<li><code>loadTTF(const char* path)</code>: Loads a TrueType font file located at the given path and returns an error code if it fails.</li>
-<li><code>readCurves(const char c)</code>: Reads the glyph for the given character c and returns a vector of <code>ConicBezierCurve</code> objects representing the vector paths of the glyph.<br>
-The <code>readCurves</code> function decomposes the glyph&apos;s outline into a series of straight lines and quadratic Bezier curves using FreeType&apos;s <code>FT_Outline_Decompose</code> function. The decomposed curves are stored in a vector of <code>ConicBezierCurve</code> objects.</li>
+<li><a href="https://freetype.org">https://freetype.org</a></li>
+<li><a href="https://www.cairographics.org/">https://www.cairographics.org/</a></li>
+<li><a href="https://developer.apple.com/fonts/TrueType-Reference-Manual/">https://developer.apple.com/fonts/TrueType-Reference-Manual/</a></li>
+<li><a href="https://developer.apple.com/documentation/appkit">https://developer.apple.com/documentation/appkit</a></li>
 </ul>
-</li>
-<li>Implemented a UI using AppKit that renders a window with an OpenGL view and takes in user text as input and displays a render button to eventually render a letter in the window.</li>
-</ul>
-<h3 class="mume-header" id="preliminary-results">Preliminary Results</h3>
+<h3 class="mume-header" id="team-contributions">Team Contributions</h3>
 
 <ul>
 <li>
-<p>Current UI:<br>
-<img src="images/ui.png" alt="Current UI"></p>
+<p>Michael: Contributed greatly to the overall technical aspects of the project, particularly the rasterization techniques and generating the quadratic Bezier curves from the outline fonts.</p>
 </li>
 <li>
-<p>Anchor Points &amp; Bezier Curves:<br>
-<img src="images/FontReader.png" alt="Anchor Points"></p>
+<p>Patrick: Contributed to the rendering of the fonts and displaying the letters onto the viewport.</p>
+</li>
+<li>
+<p>Kelly: Contributed to the UI using Apple&#x2019;s AppKit by creating a color picking tool and helped with connecting the viewport with the backend code.</p>
+</li>
+<li>
+<p>Rachel: Helped with scheduling team meetings and writing the technical reports of the projects.</p>
 </li>
 </ul>
-<h3 class="mume-header" id="progress-reflection">Progress Reflection</h3>
-
-<ul>
-<li>Our initial goal was to integrate the nanogui from Project 4 ClothSim into our repo to render the Bezier curves in the GUI.</li>
-<li>However, the repo began to get more messy and complicated to work with across the team due to local build errors, so we decided to create a new repo and use AppKit instead for the Model-View-Controller.</li>
-<li>Since some of the team members were already familiar with how to use AppKit, we decided to move forward with this library to implement the rendered window.</li>
-</ul>
-<h3 class="mume-header" id="revised-todo">Revised TODO</h3>
-
-<ul>
-<li>Convert raw anchor points to ones we can render using a known algorithm (such as de casteljau&apos;s algorithm)</li>
-</ul>
-<p><strong>Video Link:</strong><br>
+<p><strong>Project Video:</strong></p>
+<video src="/docs/images/184_final_project.mp4" controls="controls" style="max-width: 730px;">
+</video>
+<p><strong>In-depth Walkthrough:</strong><br>
 <a href="https://drive.google.com/file/d/1q8iR0E-3vQEv11JkJXeweCCx8BOcaj8-/view?usp=share_link">https://drive.google.com/file/d/1q8iR0E-3vQEv11JkJXeweCCx8BOcaj8-/view?usp=share_link</a></p>
-<p><strong>Slides Link:</strong><br>
-<a href="https://docs.google.com/presentation/d/1wWpdOr6KtxQWiHJTQNXE9imhYonqXX_ZKGg0gPIZ440/edit?usp=sharing">https://docs.google.com/presentation/d/1wWpdOr6KtxQWiHJTQNXE9imhYonqXX_ZKGg0gPIZ440/edit?usp=sharing</a></p>
 
       </div>
       
