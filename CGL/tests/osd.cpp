@@ -1,5 +1,5 @@
-#include "CGL/color.h"
-#include "CGL/osdtext.h"
+#include "color.h"
+#include "osdtext.h"
 
 #include <stdlib.h>
 
@@ -7,8 +7,6 @@
 #include "GLFW/glfw3.h"
 
 using namespace CGL;
-
-#define USE_HDPI false
 
 int main(int argc, char *argv[]) {
 
@@ -51,7 +49,7 @@ int main(int argc, char *argv[]) {
 
   // create on-screen display text
   osd_text = new OSDText();
-  osd_text->init(USE_HDPI);
+  osd_text->init();
   osd_text->resize(640, 480);
 
   // add lines

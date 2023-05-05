@@ -4,6 +4,7 @@
 #include <string.h>
 #include <ostream>
 #include <sstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -65,11 +66,11 @@ string Color::toHex( void ) const {
 }
 
 std::ostream& operator<<( std::ostream& os, const Color& c ) {
-  os << "(r=" << c.r;
-  os << " g=" << c.g;
-  os << " b=" << c.b;
-  os << " a=" << c.a;
-  os << ")";
+  os << "( r=" << c.r;
+  os << ", g=" << c.g;
+  os << ", b=" << c.b;
+  os << ", a=" << c.a;
+  os << " )" << endl;
   return os;
 }
 

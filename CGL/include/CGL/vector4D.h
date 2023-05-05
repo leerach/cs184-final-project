@@ -1,11 +1,9 @@
 #ifndef CGL_VECTOR4D_H
 #define CGL_VECTOR4D_H
 
-#include "CGL.h"
-#include "vector3D.h"
-
 #include <ostream>
 #include <cmath>
+#include "vector3D.h"
 
 namespace CGL {
 
@@ -55,12 +53,6 @@ class Vector4D {
    */
  Vector4D( const Vector3D& v ) : x( v.x ), y( v.y ), z( v.z ), w( 0.0 ) { }
 
- /**
-   * Constructor.
-   * Initializes from existing vector3D and w value.
-   */
- Vector4D( const Vector3D& v, double w ) : x( v.x ), y( v.y ), z( v.z ), w( w ) { }
-
   // returns reference to the specified component (0-based indexing: x, y, z)
   inline double& operator[] ( const int& index ) {
     return ( &x )[ index ];
@@ -109,7 +101,7 @@ class Vector4D {
 
   // scalar multiplication / assignment
   inline void operator*=( const double& c ) {
-    x *= c; y *= c; z *= c; w *= c;
+    x *= c; y *= c; z *= c; z *= c;
   }
 
   // scalar division / assignment
@@ -152,11 +144,6 @@ class Vector4D {
    */
   Vector3D to3D();
 
-  /**
-   * Converts this vector to a 3D vector by dividing x, y, and z by w.
-   */
-  Vector3D projectTo3D();
-
 }; // class Vector4D
 
 // left scalar multiplication
@@ -170,7 +157,7 @@ inline double dot( const Vector4D& u, const Vector4D& v ) {
 }
 
 // prints components
-std::ostream& operator<<( std::ostream& os, const Vector4D& v );
+std::ostream& operator<<( std::ostream& os, const Vector3D& v );
 
 } // namespace CGL
 
