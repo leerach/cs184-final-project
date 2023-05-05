@@ -62,6 +62,6 @@ Demo video link (click for full animation of the font renderer in action!): http
 - Rachel: Helped with scheduling team meetings and writing the technical reports of the projects.
 
 **Project Video:**
-
+https://drive.google.com/file/d/1vo_GatCk12jzXki1KjU5npJEs4oRo-6Z/view?usp=sharing 
 **In-depth Walkthrough:**
 https://drive.google.com/file/d/1q8iR0E-3vQEv11JkJXeweCCx8BOcaj8-/view?usp=share_link 
